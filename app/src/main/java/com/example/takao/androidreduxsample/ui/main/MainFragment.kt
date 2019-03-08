@@ -24,8 +24,11 @@ class MainFragment : Fragment() {
         }.root
     }
 
-    fun nextButtonClicked(view: View) {
+    fun nextButtonClicked(view: View) =
         view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToNextFragment())
+
+    fun incrementButtonClicked(view: View) {
+
     }
 
     companion object {

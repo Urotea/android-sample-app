@@ -1,7 +1,8 @@
-package com.example.takao.androidreduxsample
+package com.example.takao.androidreduxsample.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.takao.androidreduxsample.R
 
 class MainActivity : AppCompatActivity() {
 
