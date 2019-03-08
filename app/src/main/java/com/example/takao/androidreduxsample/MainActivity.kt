@@ -1,19 +1,13 @@
 package com.example.takao.androidreduxsample
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.takao.androidreduxsample.ui.main.MainFragment
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
-                .commitNow()
-        }
     }
 
 }
