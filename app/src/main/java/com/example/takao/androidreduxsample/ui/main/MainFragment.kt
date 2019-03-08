@@ -9,13 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.takao.androidreduxsample.databinding.FragmentMainBinding
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MainFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
 class MainFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
