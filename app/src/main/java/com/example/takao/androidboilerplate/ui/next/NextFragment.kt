@@ -1,12 +1,17 @@
-package com.example.takao.androidreduxsample.ui.next
+package com.example.takao.androidboilerplate.ui.next
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.takao.androidreduxsample.databinding.FragmentNextBinding
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import com.example.takao.androidboilerplate.databinding.FragmentNextBinding
+import com.example.takao.androidboilerplate.di.ViewModelFactory
+import com.example.takao.androidboilerplate.store.MainActivityStore
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
@@ -14,7 +19,14 @@ import com.example.takao.androidreduxsample.databinding.FragmentNextBinding
  * create an instance of this fragment.
  *
  */
-class NextFragment : Fragment() {
+class NextFragment : DaggerFragment() {
+    @Inject
+    lateinit var viewFactory: ViewModelFactory
+
+    private val viewModel: MainActivityStore by lazy {
+        ViewModelProviders.of(requireActivity(), this.viewFactory).get(MainActivityStore::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -36,7 +48,6 @@ class NextFragment : Fragment() {
          *
          * @return A new instance of fragment NextFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() = NextFragment()
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
-        <variable name="fragment" type="com.example.takao.androidreduxsample.ui.next.NextFragment"/>
+        <variable name="fragment" type="com.example.takao.androidboilerplate.ui.next.NextFragment"/>
 
     </data>
 

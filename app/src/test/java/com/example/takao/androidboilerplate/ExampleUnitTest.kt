@@ -1,4 +1,4 @@
-package com.example.takao.androidreduxsample
+package com.example.takao.androidboilerplate
 
 import org.junit.Test
 

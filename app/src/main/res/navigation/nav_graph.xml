@@ -3,10 +3,10 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
             app:startDestination="@id/mainFragment">
-    <fragment android:id="@+id/mainFragment" android:name="com.example.takao.androidreduxsample.ui.main.MainFragment"
+    <fragment android:id="@+id/mainFragment" android:name="com.example.takao.androidboilerplate.ui.main.MainFragment"
               android:label="fragment_main" tools:layout="@layout/fragment_main">
         <action android:id="@+id/action_mainFragment_to_nextFragment" app:destination="@id/nextFragment"/>
     </fragment>
-    <fragment android:id="@+id/nextFragment" android:name="com.example.takao.androidreduxsample.ui.next.NextFragment"
+    <fragment android:id="@+id/nextFragment" android:name="com.example.takao.androidboilerplate.ui.next.NextFragment"
               android:label="fragment_next" tools:layout="@layout/fragment_next"/>
 </navigation>
