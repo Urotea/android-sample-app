@@ -13,7 +13,6 @@ import com.example.takao.androidboilerplate.repository.PingPongRepositoryImpl
 import com.example.takao.androidboilerplate.store.MainActivityState
 import com.example.takao.androidboilerplate.util.rx.AppSchedulerProvider
 import com.example.takao.androidboilerplate.util.rx.SchedulerProvider
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named

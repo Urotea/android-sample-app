@@ -1,13 +1,11 @@
 package com.example.takao.androidboilerplate.middleware
 
-import android.os.Looper
 import com.example.takao.androidboilerplate.actions.MainActivityActions
 import com.example.takao.androidboilerplate.redux.Middleware
 import com.example.takao.androidboilerplate.repository.PingPongRepository
 import com.example.takao.androidboilerplate.store.MainActivityState
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
-import timber.log.Timber
 import javax.inject.Inject
 
 class AsyncMiddleware @Inject constructor(
@@ -24,7 +22,6 @@ class AsyncMiddleware @Inject constructor(
     private fun doWhenPingButtonClicked(action: Flowable<MainActivityActions>): Flowable<MainActivityActions> {
         val filtered = action.filter { it is MainActivityActions.PingButtonClicked }
             .flatMap { action ->
-                Timber.d("is main in flatMap ${Looper.myLooper() == Looper.getMainLooper()}")
                 Flowable.concat(
                     Flowable.just(action),
                     Flowable.create<MainActivityActions>({ emitter ->

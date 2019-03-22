@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class PingPongRepositoryImpl @Inject constructor(
     private val networkDao: NetworkDao
-): PingPongRepository {
+) : PingPongRepository {
     override fun getNewPingPongStatus(): PingPong {
         return this.networkDao.getPingPongFromServer()
     }

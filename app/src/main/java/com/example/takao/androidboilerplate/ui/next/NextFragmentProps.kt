@@ -5,4 +5,4 @@ import androidx.lifecycle.ViewModel
 
 data class NextFragmentProps(
     val label: LiveData<String>
-): ViewModel()
+) : ViewModel()

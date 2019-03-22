@@ -5,4 +5,4 @@ import androidx.lifecycle.ViewModel
 
 data class MainFragmentProps(
     val numberLabel: LiveData<String>
-): ViewModel()
+) : ViewModel()

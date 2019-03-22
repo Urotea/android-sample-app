@@ -2,7 +2,6 @@ package com.example.takao.androidboilerplate.store
 
 import androidx.lifecycle.ViewModel
 import com.example.takao.androidboilerplate.actions.MainActivityActions
-import com.example.takao.androidboilerplate.redux.Action
 import com.example.takao.androidboilerplate.redux.Middleware
 import com.example.takao.androidboilerplate.redux.Reducer
 import com.example.takao.androidboilerplate.ui.main.MainFragmentProps

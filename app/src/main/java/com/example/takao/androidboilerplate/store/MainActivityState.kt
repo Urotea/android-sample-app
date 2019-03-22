@@ -6,7 +6,7 @@ import com.example.takao.androidboilerplate.redux.State
 data class MainActivityState(
     val mainFragmentState: MainFragmentState = MainFragmentState(),
     val nextFragmentState: NextFragmentState = NextFragmentState()
-): State {
+) : State {
 
     data class MainFragmentState(
         val num: Int = 0

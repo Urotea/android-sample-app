@@ -6,10 +6,10 @@ import com.example.takao.androidboilerplate.redux.Reducer
 import com.example.takao.androidboilerplate.store.MainActivityState
 import javax.inject.Inject
 
-class MainActivityReducer @Inject constructor(): Reducer<MainActivityActions, MainActivityState> {
+class MainActivityReducer @Inject constructor() : Reducer<MainActivityActions, MainActivityState> {
 
     override fun reduce(action: MainActivityActions, state: MainActivityState): MainActivityState {
-        return when(action) {
+        return when (action) {
             MainActivityActions.IncrementButtonClicked -> {
                 val newMainFragmentState = state.mainFragmentState.copy(num = state.mainFragmentState.num + 1)
                 state.copy(mainFragmentState = newMainFragmentState)

@@ -19,7 +19,7 @@ open class App : DaggerApplication() {
     }
 
     private fun setupTimber() {
-        if(BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
     }
