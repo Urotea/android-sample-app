@@ -17,12 +17,12 @@ class MainFragment : DaggerFragment() {
     @Inject
     lateinit var viewFactory: ViewModelFactory
 
-    private val viewModel: MainActivityStore by lazy {
+    private val viewModel: MainFragmentViewModel by lazy {
         ViewModelProviders.of(requireActivity(), this.viewFactory).get(MainActivityStore::class.java)
     }
 
     private val props: MainFragmentProps by lazy {
-        this.viewModel.toMainFragmentProps()
+        this.viewModel.mainFragmentProps
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,18 +44,7 @@ class MainFragment : DaggerFragment() {
     fun nextButtonClicked(view: View) =
         view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToNextFragment())
 
-    fun incrementButtonClicked(view: View) {
+    fun incrementButtonClicked(@Suppress("UNUSED_PARAMETER") view: View) {
         this.viewModel.dispatch(MainActivityActions.IncrementButtonClicked)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @return A new instance of fragment MainFragment.
-         */
-        @JvmStatic
-        fun newInstance() = MainFragment()
     }
 }
