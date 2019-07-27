@@ -1,8 +1,14 @@
 package com.example.takao.androidboilerplate.ui.main
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.example.takao.androidboilerplate.state.MainActivityState
 
-data class MainFragmentProps(
-    val numberLabel: LiveData<String>
-) : ViewModel()
+class MainFragmentProps(
+    state: LiveData<MainActivityState>
+) {
+    val numberLabel = Transformations.map(state) {
+        "${it.mainFragmentState.num}回"
+    }
+}
