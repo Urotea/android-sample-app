@@ -1,15 +1,18 @@
 package com.example.takao.androidboilerplate.ui
 
-import androidx.lifecycle.ViewModelProviders
-import com.example.takao.androidboilerplate.di.ViewModelFactory
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
+import android.content.Context
+import androidx.fragment.app.Fragment
+import dagger.android.support.AndroidSupportInjection
 
-abstract class MainActivityFragmentBase: DaggerFragment() {
-    @Inject
-    lateinit var viewFactory: ViewModelFactory
+abstract class MainActivityFragmentBase: Fragment() {
 
     protected val viewModel: MainActivityViewModel by lazy {
-        ViewModelProviders.of(requireActivity(), this.viewFactory).get(MainActivityViewModel::class.java)
+        val hasViewModel = this.requireActivity() as HasViewModel
+        hasViewModel.viewModel
+    }
+
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
     }
 }

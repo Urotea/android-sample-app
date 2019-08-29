@@ -16,7 +16,7 @@ class MainActivitySideEffectsImpl @Inject constructor(
     private val scheduler: SchedulerProvider
 ) : MainActivitySideEffects {
 
-    override val doWhenPingButtonClicked: SideEffect<MainActivityState, MainActivityActions> = { action, state ->
+    override val doWhenPingButtonClicked: SideEffect<MainActivityState, MainActivityActions> = { action, _ ->
         action.ofType(MainActivityActions.PingButtonClicked::class.java)
             .observeOn(this.scheduler.io())
             .map { MainActivityActions.PongNetworkResponseReceived(this.pingPongRepository.getNewPingPongStatus()) }

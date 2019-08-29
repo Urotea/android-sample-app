@@ -2,6 +2,8 @@ package com.example.takao.androidboilerplate.di.activityModule
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.takao.androidboilerplate.di.ViewModelFactory
 import com.example.takao.androidboilerplate.di.ViewModelKey
 import com.example.takao.androidboilerplate.reducer.MainActivityReducer
 import com.example.takao.androidboilerplate.reducer.MainActivityReducerImpl
@@ -45,4 +47,7 @@ interface MainActivityModule {
     fun bindMainViewViewModel(
         mainActivityViewModel: MainActivityViewModel
     ): ViewModel
+
+    @Binds
+    fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }
