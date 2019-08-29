@@ -1,86 +1,44 @@
 package com.example.takao.androidboilerplate.store
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
 import com.example.takao.androidboilerplate.actions.MainActivityActions
-import com.example.takao.androidboilerplate.redux.Middleware
-import com.example.takao.androidboilerplate.redux.Reducer
-import com.example.takao.androidboilerplate.ui.main.MainFragmentProps
-import com.example.takao.androidboilerplate.ui.main.MainFragmentViewModel
-import com.example.takao.androidboilerplate.ui.next.NextFragmentProps
-import com.example.takao.androidboilerplate.ui.next.NextFragmentViewModel
-import com.example.takao.androidboilerplate.util.rx.SchedulerProvider
+import com.example.takao.androidboilerplate.sideEffect.MainActivitySideEffects
+import com.example.takao.androidboilerplate.reducer.MainActivityReducer
+import com.example.takao.androidboilerplate.state.MainActivityState
 import com.example.takao.androidboilerplate.util.rx.toLiveData
+import com.freeletics.rxredux.reduxStore
+import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.BackpressureStrategy
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.subjects.BehaviorSubject
 import timber.log.Timber
 import javax.inject.Inject
-import javax.inject.Named
 
-class MainActivityStore @Inject constructor(
-    private val reducer: Reducer<MainActivityActions, MainActivityState>,
-    private val scheduler: SchedulerProvider,
-    @Named("log") private val logMiddleware: Middleware<MainActivityActions, MainActivityState>,
-    @Named("async") private val asyncMiddleware: Middleware<MainActivityActions, MainActivityState>
-) : ViewModel(), MainFragmentViewModel, NextFragmentViewModel {
+interface MainActivityStore {
+    val state: LiveData<MainActivityState>
+    fun dispatch(action: MainActivityActions)
+}
 
-    private val disposeBag = CompositeDisposable()
-    private val stream = BehaviorSubject.create<MainActivityActions>()
-    private val _state = BehaviorSubject.createDefault(MainActivityState())
-
-    override val nextFragmentProps: NextFragmentProps = this.toNextFragmentProps()
-    override val mainFragmentProps: MainFragmentProps = this.toMainFragmentProps()
+class MainActivityStoreImpl @Inject constructor(
+    private val reducer: MainActivityReducer,
+    private val middleware: MainActivitySideEffects
+): MainActivityStore {
+    private val actionStream = PublishRelay.create<MainActivityActions>()
+    override val state: LiveData<MainActivityState>
 
     init {
-        val actionStream = run {
-            val first = this.stream.toFlowable(BackpressureStrategy.LATEST).observeOn(this.scheduler.io())
-            val second = this.logMiddleware.apply(first, this._state.toFlowable(BackpressureStrategy.LATEST))
-            this.asyncMiddleware.apply(
-                second, this._state.toFlowable(
-                    BackpressureStrategy.LATEST
-                )
+        state = actionStream
+            .doOnNext{ Timber.d("$it")}
+            .reduxStore(
+                initialState = MainActivityState(),
+                sideEffects = listOf(this.middleware.doWhenPingButtonClicked),
+                reducer = this.reducer.reducer
             )
-        }
-        actionStream
-            .subscribeBy(onNext = { action ->
-                val newState = this.reducer.reduce(action = action, state = this._state.value!!)
-                if (this._state.value != newState) {
-                    this._state.onNext(newState)
-                }
-                Timber.d("after reduce. action=$action, state=$newState")
-            }, onError = { error ->
-                Timber.e(error)
-            }, onComplete = {
-                Timber.i("MainActivityStore stream is closed.")
-            }).addTo(disposeBag)
+            .distinctUntilChanged()
+            .doOnNext { Timber.d("$it") }
+            .toFlowable(BackpressureStrategy.DROP)
+            .toLiveData()
     }
 
     override fun dispatch(action: MainActivityActions) {
-        this.stream.onNext(action)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        this.disposeBag.dispose()
-    }
-
-    private fun toMainFragmentProps(): MainFragmentProps {
-        return MainFragmentProps(
-            numberLabel = this._state
-                .toFlowable(BackpressureStrategy.BUFFER)
-                .map { "count: ${it.mainFragmentState.num}" }
-                .toLiveData()
-        )
-    }
-
-    private fun toNextFragmentProps(): NextFragmentProps {
-        return NextFragmentProps(
-            label = this._state
-                .toFlowable(BackpressureStrategy.BUFFER)
-                .map { it.nextFragmentState.pingPong.name }
-                .toLiveData()
-        )
+        actionStream.accept(action)
     }
 }

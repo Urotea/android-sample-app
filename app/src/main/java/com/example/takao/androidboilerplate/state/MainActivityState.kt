@@ -1,12 +1,11 @@
-package com.example.takao.androidboilerplate.store
+package com.example.takao.androidboilerplate.state
 
 import com.example.takao.androidboilerplate.entity.PingPong
-import com.example.takao.androidboilerplate.redux.State
 
 data class MainActivityState(
     val mainFragmentState: MainFragmentState = MainFragmentState(),
     val nextFragmentState: NextFragmentState = NextFragmentState()
-) : State {
+) {
 
     data class MainFragmentState(
         val num: Int = 0

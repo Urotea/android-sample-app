@@ -11,19 +11,13 @@ import com.example.takao.androidboilerplate.actions.MainActivityActions
 import com.example.takao.androidboilerplate.databinding.FragmentNextBinding
 import com.example.takao.androidboilerplate.di.ViewModelFactory
 import com.example.takao.androidboilerplate.store.MainActivityStore
+import com.example.takao.androidboilerplate.ui.MainActivityFragmentBase
 import dagger.android.support.DaggerFragment
 import timber.log.Timber
 import java.time.OffsetDateTime
 import javax.inject.Inject
 
-class NextFragment : DaggerFragment() {
-    @Inject
-    lateinit var viewFactory: ViewModelFactory
-
-    private val viewModel: NextFragmentViewModel by lazy {
-        ViewModelProviders.of(requireActivity(), this.viewFactory).get(MainActivityStore::class.java)
-    }
-
+class NextFragment : MainActivityFragmentBase() {
     private val props: NextFragmentProps by lazy {
         this.viewModel.nextFragmentProps
     }

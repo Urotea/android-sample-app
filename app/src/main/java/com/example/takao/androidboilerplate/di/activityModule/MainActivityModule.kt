@@ -2,15 +2,20 @@ package com.example.takao.androidboilerplate.di.activityModule
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
-import com.example.takao.androidboilerplate.actions.MainActivityActions
+import androidx.lifecycle.ViewModelProvider
+import com.example.takao.androidboilerplate.di.ViewModelFactory
 import com.example.takao.androidboilerplate.di.ViewModelKey
 import com.example.takao.androidboilerplate.reducer.MainActivityReducer
-import com.example.takao.androidboilerplate.redux.Reducer
-import com.example.takao.androidboilerplate.store.MainActivityState
+import com.example.takao.androidboilerplate.reducer.MainActivityReducerImpl
+import com.example.takao.androidboilerplate.sideEffect.MainActivitySideEffects
+import com.example.takao.androidboilerplate.sideEffect.MainActivitySideEffectsImpl
 import com.example.takao.androidboilerplate.store.MainActivityStore
+import com.example.takao.androidboilerplate.store.MainActivityStoreImpl
 import com.example.takao.androidboilerplate.ui.MainActivity
+import com.example.takao.androidboilerplate.ui.MainActivityViewModel
 import com.example.takao.androidboilerplate.ui.main.MainFragment
 import com.example.takao.androidboilerplate.ui.next.NextFragment
+import com.freeletics.rxredux.SideEffect
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -28,13 +33,21 @@ interface MainActivityModule {
     fun contributeNextFragment(): NextFragment
 
     @Binds
-    fun providesMainActivityReducer(reducer: MainActivityReducer): Reducer<MainActivityActions, MainActivityState>
+    fun providesMainActivityReducer(reducer: MainActivityReducerImpl): MainActivityReducer
 
+    @Binds
+    fun providesMainActivityStore(store: MainActivityStoreImpl): MainActivityStore
+
+    @Binds
+    fun providesMainActivitySideEffect(sideEffects: MainActivitySideEffectsImpl): MainActivitySideEffects
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainActivityStore::class)
-    fun bindMainViewStore(
-        mainActivityStore: MainActivityStore
+    @ViewModelKey(MainActivityViewModel::class)
+    fun bindMainViewViewModel(
+        mainActivityViewModel: MainActivityViewModel
     ): ViewModel
+
+    @Binds
+    fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

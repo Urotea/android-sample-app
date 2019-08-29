@@ -10,23 +10,14 @@ import com.example.takao.androidboilerplate.actions.MainActivityActions
 import com.example.takao.androidboilerplate.databinding.FragmentMainBinding
 import com.example.takao.androidboilerplate.di.ViewModelFactory
 import com.example.takao.androidboilerplate.store.MainActivityStore
+import com.example.takao.androidboilerplate.ui.MainActivityFragmentBase
+import com.example.takao.androidboilerplate.ui.MainActivityViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class MainFragment : DaggerFragment() {
-    @Inject
-    lateinit var viewFactory: ViewModelFactory
-
-    private val viewModel: MainFragmentViewModel by lazy {
-        ViewModelProviders.of(requireActivity(), this.viewFactory).get(MainActivityStore::class.java)
-    }
-
+class MainFragment : MainActivityFragmentBase() {
     private val props: MainFragmentProps by lazy {
         this.viewModel.mainFragmentProps
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
