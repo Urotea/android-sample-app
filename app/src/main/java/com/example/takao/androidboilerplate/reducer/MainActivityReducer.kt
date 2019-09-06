@@ -3,7 +3,7 @@ package com.example.takao.androidboilerplate.reducer
 import com.example.takao.androidboilerplate.actions.MainActivityActions
 import com.example.takao.androidboilerplate.entity.PingPong
 import com.example.takao.androidboilerplate.state.MainActivityState
-import com.freeletics.rxredux.Reducer
+import com.freeletics.coredux.Reducer
 import javax.inject.Inject
 
 interface MainActivityReducer {

@@ -7,15 +7,12 @@ import com.example.takao.androidboilerplate.di.ViewModelFactory
 import com.example.takao.androidboilerplate.di.ViewModelKey
 import com.example.takao.androidboilerplate.reducer.MainActivityReducer
 import com.example.takao.androidboilerplate.reducer.MainActivityReducerImpl
-import com.example.takao.androidboilerplate.sideEffect.MainActivitySideEffects
-import com.example.takao.androidboilerplate.sideEffect.MainActivitySideEffectsImpl
 import com.example.takao.androidboilerplate.store.MainActivityStore
 import com.example.takao.androidboilerplate.store.MainActivityStoreImpl
 import com.example.takao.androidboilerplate.ui.MainActivity
 import com.example.takao.androidboilerplate.ui.MainActivityViewModel
 import com.example.takao.androidboilerplate.ui.main.MainFragment
 import com.example.takao.androidboilerplate.ui.next.NextFragment
-import com.freeletics.rxredux.SideEffect
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -37,9 +34,6 @@ interface MainActivityModule {
 
     @Binds
     fun providesMainActivityStore(store: MainActivityStoreImpl): MainActivityStore
-
-    @Binds
-    fun providesMainActivitySideEffect(sideEffects: MainActivitySideEffectsImpl): MainActivitySideEffects
 
     @Binds
     @IntoMap

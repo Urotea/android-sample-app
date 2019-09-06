@@ -51,7 +51,7 @@ dependencies {
     // lifecycle
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha03'
     implementation "androidx.lifecycle:lifecycle-reactivestreams:2.2.0-alpha03"
-    kapt "androidx.lifecycle:lifecycle-compiler:2.2.0-alpha03"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0-alpha03"
 
     // navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version" // For Kotlin use navigation-fragment-ktx
@@ -74,10 +74,10 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
     // coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.2"
 
-    // RxRedux
-    implementation 'com.freeletics.rxredux:rxredux:1.0.1'
+    // CoRedux
+    implementation "com.freeletics.coredux:core:1.1.1"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
