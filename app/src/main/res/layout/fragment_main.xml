@@ -6,8 +6,8 @@
                 name="fragment"
                 type="com.example.takao.androidboilerplate.ui.main.MainFragment"/>
         <variable
-                name="props"
-                type="com.example.takao.androidboilerplate.ui.main.MainFragmentProps"/>
+                name="viewModel"
+                type="com.example.takao.androidboilerplate.ui.main.MainFragmentViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,6 +23,7 @@
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
                 android:onClick="@{fragment::nextButtonClicked}"/>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:src="@android:drawable/ic_input_add"
                 android:layout_width="wrap_content"
@@ -32,13 +33,19 @@
                 android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:onClick="@{fragment::incrementButtonClicked}"/>
+
         <TextView
+                android:id="@+id/numberLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/numberLabel" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-                android:text="@{props.numberLabel}"/>
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{viewModel.numberLabel}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

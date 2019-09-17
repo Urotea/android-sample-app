@@ -3,7 +3,7 @@
         xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable name="fragment" type="com.example.takao.androidboilerplate.ui.next.NextFragment"/>
-        <variable name="props" type="com.example.takao.androidboilerplate.ui.next.NextFragmentProps"/>
+        <variable name="viewModel" type="com.example.takao.androidboilerplate.ui.next.NextFragmentViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,7 @@
                 android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:text="@{props.label}"/>
+                android:text="@{viewModel.pingPong}"/>
         <Button
                 android:text="PING"
                 android:layout_width="wrap_content"

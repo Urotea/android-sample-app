@@ -7,7 +7,7 @@ import javax.inject.Inject
 class PingPongRepositoryImpl @Inject constructor(
     private val networkDao: NetworkDao
 ) : PingPongRepository {
-    override fun getNewPingPongStatus(): PingPong {
+    override suspend fun getNewPingPongStatus(): PingPong {
         return this.networkDao.getPingPongFromServer()
     }
 }

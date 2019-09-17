@@ -2,11 +2,10 @@ package com.example.takao.androidboilerplate.dao
 
 import com.example.takao.androidboilerplate.entity.PingPong
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
 
 class NetworkDaoMockImpl: NetworkDao {
-    override fun getPingPongFromServer(): PingPong = runBlocking {
+    override suspend fun getPingPongFromServer(): PingPong {
         delay(1000)
-        PingPong.PING
+        return PingPong.PING
     }
 }

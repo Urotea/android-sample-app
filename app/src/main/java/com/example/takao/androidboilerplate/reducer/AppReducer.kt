@@ -1,28 +1,28 @@
 package com.example.takao.androidboilerplate.reducer
 
-import com.example.takao.androidboilerplate.actions.MainActivityActions
+import com.example.takao.androidboilerplate.actions.AppActions
 import com.example.takao.androidboilerplate.entity.PingPong
-import com.example.takao.androidboilerplate.state.MainActivityState
+import com.example.takao.androidboilerplate.state.AppState
 import com.freeletics.coredux.Reducer
 import javax.inject.Inject
 
-interface MainActivityReducer {
-    val reducer: Reducer<MainActivityState, MainActivityActions>
+interface AppReducer {
+    val reducer: Reducer<AppState, AppActions>
 }
 
-class MainActivityReducerImpl @Inject constructor() : MainActivityReducer {
+class AppReducerImpl @Inject constructor() : AppReducer {
 
-    override val reducer: Reducer<MainActivityState, MainActivityActions> = { state, action ->
+    override val reducer: Reducer<AppState, AppActions> = { state, action ->
         when (action) {
-            MainActivityActions.IncrementButtonClicked -> {
+            AppActions.IncreaseCount -> {
                 val newMainFragmentState = state.mainFragmentState.copy(num = state.mainFragmentState.num + 1)
                 state.copy(mainFragmentState = newMainFragmentState)
             }
-            is MainActivityActions.PingButtonClicked -> {
+            is AppActions.StartPingPong -> {
                 val newNextFragmentState = state.nextFragmentState.copy(pingPong = PingPong.PONG)
                 state.copy(nextFragmentState = newNextFragmentState)
             }
-            is MainActivityActions.PongNetworkResponseReceived -> {
+            is AppActions.PongNetworkResponseReceived -> {
                 val newNextFragmentState = state.nextFragmentState.copy(pingPong = action.pingPong)
                 state.copy(nextFragmentState = newNextFragmentState)
             }

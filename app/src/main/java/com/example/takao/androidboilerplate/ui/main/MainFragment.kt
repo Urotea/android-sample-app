@@ -4,20 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.example.takao.androidboilerplate.actions.MainActivityActions
 import com.example.takao.androidboilerplate.databinding.FragmentMainBinding
-import com.example.takao.androidboilerplate.di.ViewModelFactory
-import com.example.takao.androidboilerplate.store.MainActivityStore
 import com.example.takao.androidboilerplate.ui.MainActivityFragmentBase
-import com.example.takao.androidboilerplate.ui.MainActivityViewModel
-import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 class MainFragment : MainActivityFragmentBase() {
-    private val props: MainFragmentProps by lazy {
-        this.viewModel.mainFragmentProps
+
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var actionCreator: MainFragmentActionCreator
+
+    private val viewModel: MainFragmentViewModel by viewModels {
+        this.factory
     }
 
     override fun onCreateView(
@@ -27,7 +30,7 @@ class MainFragment : MainActivityFragmentBase() {
         // Inflate the layout for this fragment
         return FragmentMainBinding.inflate(inflater).apply {
             fragment = this@MainFragment
-            props = this@MainFragment.props
+            viewModel = this@MainFragment.viewModel
             lifecycleOwner = this@MainFragment
         }.root
     }
@@ -36,6 +39,6 @@ class MainFragment : MainActivityFragmentBase() {
         view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToNextFragment())
 
     fun incrementButtonClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-        this.viewModel.dispatch(MainActivityActions.IncrementButtonClicked)
+        this.actionCreator.countUp()
     }
 }

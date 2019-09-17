@@ -2,7 +2,7 @@ package com.example.takao.androidboilerplate.state
 
 import com.example.takao.androidboilerplate.entity.PingPong
 
-data class MainActivityState(
+data class AppState(
     val mainFragmentState: MainFragmentState = MainFragmentState(),
     val nextFragmentState: NextFragmentState = NextFragmentState()
 ) {
