@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -28,13 +29,18 @@ class NextFragment : MainActivityFragmentBase() {
         super.onCreate(savedInstanceState)
     }
 
+    override fun onBackPressed(): Boolean {
+        this.actionCreator.leavePage()
+        return super.onBackPressed()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return FragmentNextBinding.inflate(inflater).apply {
             fragment = this@NextFragment
-            lifecycleOwner = this@NextFragment
+            lifecycleOwner = this@NextFragment.viewLifecycleOwner
             viewModel = this@NextFragment.viewModel
         }.root
     }

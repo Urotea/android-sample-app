@@ -8,8 +8,10 @@ import javax.inject.Inject
 
 class NextFragmentViewModel @Inject constructor(
     private val stateAccessor: StateAccessor<AppState>
-): ViewModel() {
-    val pingPong = Transformations.map(this.stateAccessor.state) { state ->
-        state.nextFragmentState.pingPong.name
-    }
+) : ViewModel() {
+    val pingPong =
+        Transformations.distinctUntilChanged(
+            Transformations.map(this.stateAccessor.state) { state ->
+                state.nextFragmentState.pingPong.name
+            })
 }

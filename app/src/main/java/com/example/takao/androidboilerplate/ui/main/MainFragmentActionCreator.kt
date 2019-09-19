@@ -10,4 +10,12 @@ class MainFragmentActionCreator @Inject constructor(
     fun countUp() {
         this.dispatcher.dispatch(AppActions.IncreaseCount)
     }
+
+    fun goNextPage() {
+        this.dispatcher.dispatch(AppActions.GoToNextFragment)
+    }
+
+    fun leavePage() {
+        this.dispatcher.dispatch(AppActions.LeaveFromMainFragment)
+    }
 }

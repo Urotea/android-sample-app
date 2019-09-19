@@ -26,6 +26,14 @@ class AppReducerImpl @Inject constructor() : AppReducer {
                 val newNextFragmentState = state.nextFragmentState.copy(pingPong = action.pingPong)
                 state.copy(nextFragmentState = newNextFragmentState)
             }
+            is AppActions.GoToNextFragment -> {
+                val newMainFragmentState = state.mainFragmentState.copy(shouldGoToNextFragment = true)
+                state.copy(mainFragmentState = newMainFragmentState)
+            }
+            is AppActions.LeaveFromMainFragment -> {
+                state.copy(mainFragmentState = AppState.MainFragmentState(num = state.mainFragmentState.num))
+            }
+            is AppActions.LeaveFromNextFragment -> state
         }
     }
 }

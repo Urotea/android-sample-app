@@ -8,7 +8,8 @@ data class AppState(
 ) {
 
     data class MainFragmentState(
-        val num: Int = 0
+        val num: Int = 0,
+        val shouldGoToNextFragment: Boolean = false
     )
 
     data class NextFragmentState(

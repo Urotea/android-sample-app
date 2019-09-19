@@ -19,4 +19,8 @@ class NextFragmentActionCreator @Inject constructor(
         val pingPong = this@NextFragmentActionCreator.pingPongRepository.getNewPingPongStatus()
         this@NextFragmentActionCreator.dispatcher.dispatch(AppActions.PongNetworkResponseReceived(pingPong = pingPong))
     }
+
+    fun leavePage() {
+        this.dispatcher.dispatch(AppActions.LeaveFromNextFragment)
+    }
 }
