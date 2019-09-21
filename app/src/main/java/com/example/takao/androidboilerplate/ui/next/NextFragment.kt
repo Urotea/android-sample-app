@@ -9,6 +9,8 @@ import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.example.takao.androidboilerplate.databinding.FragmentNextBinding
 import com.example.takao.androidboilerplate.ui.MainActivityFragmentBase
 import javax.inject.Inject
@@ -29,9 +31,9 @@ class NextFragment : MainActivityFragmentBase() {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onBackPressed(): Boolean {
+    override fun onBackPressed() {
         this.actionCreator.leavePage()
-        return super.onBackPressed()
+        this.view?.findNavController()?.popBackStack()
     }
 
     override fun onCreateView(

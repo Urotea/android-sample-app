@@ -29,7 +29,9 @@ class MainFragment : MainActivityFragmentBase() {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onBackPressed(): Boolean = super.onBackPressed()
+    override fun onBackPressed() {
+        this.activity?.finish()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

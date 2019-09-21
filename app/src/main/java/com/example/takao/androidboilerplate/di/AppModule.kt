@@ -8,9 +8,6 @@ import com.example.takao.androidboilerplate.reducer.AppReducer
 import com.example.takao.androidboilerplate.reducer.AppReducerImpl
 import com.example.takao.androidboilerplate.repository.PingPongRepository
 import com.example.takao.androidboilerplate.repository.PingPongRepositoryImpl
-import com.example.takao.androidboilerplate.util.rx.AppSchedulerProvider
-import com.example.takao.androidboilerplate.util.rx.SchedulerProvider
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -21,11 +18,6 @@ internal object AppModule {
     @Provides
     @JvmStatic
     fun provideContext(application: Application): Context = application
-
-    @Singleton
-    @Provides
-    @JvmStatic
-    fun provideScheduler(): SchedulerProvider = AppSchedulerProvider()
 
     @Singleton
     @Provides

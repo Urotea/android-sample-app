@@ -17,12 +17,9 @@ abstract class MainActivityFragmentBase: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         this.activity?.onBackPressedDispatcher?.addCallback(this.viewLifecycleOwner, true) {
-            val shouldCallBack = this@MainActivityFragmentBase.onBackPressed()
-            if(shouldCallBack) this@MainActivityFragmentBase.activity?.onBackPressed()
+            this@MainActivityFragmentBase.onBackPressed()
         }
     }
 
-    open fun onBackPressed(): Boolean {
-        return true
-    }
+    abstract fun onBackPressed()
 }
