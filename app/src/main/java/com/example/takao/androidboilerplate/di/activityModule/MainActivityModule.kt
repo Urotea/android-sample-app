@@ -3,19 +3,18 @@ package com.example.takao.androidboilerplate.di.activityModule
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.takao.androidboilerplate.actions.AppActions
 import com.example.takao.androidboilerplate.di.ViewModelFactory
 import com.example.takao.androidboilerplate.di.ViewModelKey
-import com.example.takao.androidboilerplate.reducer.MainActivityReducer
-import com.example.takao.androidboilerplate.reducer.MainActivityReducerImpl
-import com.example.takao.androidboilerplate.sideEffect.MainActivitySideEffects
-import com.example.takao.androidboilerplate.sideEffect.MainActivitySideEffectsImpl
-import com.example.takao.androidboilerplate.store.MainActivityStore
-import com.example.takao.androidboilerplate.store.MainActivityStoreImpl
+import com.example.takao.androidboilerplate.state.AppState
+import com.example.takao.androidboilerplate.store.Dispatcher
+import com.example.takao.androidboilerplate.store.AppStore
+import com.example.takao.androidboilerplate.store.StateAccessor
 import com.example.takao.androidboilerplate.ui.MainActivity
-import com.example.takao.androidboilerplate.ui.MainActivityViewModel
 import com.example.takao.androidboilerplate.ui.main.MainFragment
+import com.example.takao.androidboilerplate.ui.main.MainFragmentViewModel
 import com.example.takao.androidboilerplate.ui.next.NextFragment
-import com.freeletics.rxredux.SideEffect
+import com.example.takao.androidboilerplate.ui.next.NextFragmentViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -33,20 +32,20 @@ interface MainActivityModule {
     fun contributeNextFragment(): NextFragment
 
     @Binds
-    fun providesMainActivityReducer(reducer: MainActivityReducerImpl): MainActivityReducer
+    fun providesDispatcher(store: AppStore): Dispatcher<AppActions>
 
     @Binds
-    fun providesMainActivityStore(store: MainActivityStoreImpl): MainActivityStore
-
-    @Binds
-    fun providesMainActivitySideEffect(sideEffects: MainActivitySideEffectsImpl): MainActivitySideEffects
+    fun providesStateAccessor(store: AppStore): StateAccessor<AppState>
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainActivityViewModel::class)
-    fun bindMainViewViewModel(
-        mainActivityViewModel: MainActivityViewModel
-    ): ViewModel
+    @ViewModelKey(MainFragmentViewModel::class)
+    fun bindMainFragmentViewModel(mainFragmentViewModel: MainFragmentViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(NextFragmentViewModel::class)
+    fun bindNextFragmentViewModel(nextFragmentViewModel: NextFragmentViewModel): ViewModel
 
     @Binds
     fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

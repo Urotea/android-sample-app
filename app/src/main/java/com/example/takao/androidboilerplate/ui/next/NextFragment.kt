@@ -5,30 +5,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import com.example.takao.androidboilerplate.actions.MainActivityActions
+import androidx.activity.addCallback
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.example.takao.androidboilerplate.databinding.FragmentNextBinding
-import com.example.takao.androidboilerplate.di.ViewModelFactory
-import com.example.takao.androidboilerplate.store.MainActivityStore
 import com.example.takao.androidboilerplate.ui.MainActivityFragmentBase
-import dagger.android.support.DaggerFragment
-import timber.log.Timber
-import java.time.OffsetDateTime
 import javax.inject.Inject
 
 class NextFragment : MainActivityFragmentBase() {
-    private val props: NextFragmentProps by lazy {
-        this.viewModel.nextFragmentProps
+
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var actionCreator: NextFragmentActionCreator
+
+    private val viewModel: NextFragmentViewModel by viewModels {
+        this.factory
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
 
-        // debug
-        this.props.label.observe(this, Observer {
-            Timber.d("test")
-        })
+    override fun onBackPressed() {
+        this.actionCreator.leavePage()
+        this.view?.findNavController()?.popBackStack()
     }
 
     override fun onCreateView(
@@ -37,12 +42,12 @@ class NextFragment : MainActivityFragmentBase() {
     ): View? {
         return FragmentNextBinding.inflate(inflater).apply {
             fragment = this@NextFragment
-            lifecycleOwner = this@NextFragment
-            props = this@NextFragment.props
+            lifecycleOwner = this@NextFragment.viewLifecycleOwner
+            viewModel = this@NextFragment.viewModel
         }.root
     }
 
     fun onPingButtonClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-        this.viewModel.dispatch(MainActivityActions.PingButtonClicked(OffsetDateTime.now()))
+        this.actionCreator.pingPong(this.lifecycleScope)
     }
 }
