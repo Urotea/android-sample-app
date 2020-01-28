@@ -15,6 +15,8 @@ import com.example.takao.androidboilerplate.ui.main.MainFragment
 import com.example.takao.androidboilerplate.ui.main.MainFragmentViewModel
 import com.example.takao.androidboilerplate.ui.next.NextFragment
 import com.example.takao.androidboilerplate.ui.next.NextFragmentViewModel
+import com.example.takao.androidboilerplate.ui.third.ThirdFragment
+import com.example.takao.androidboilerplate.ui.third.ThirdFragmentViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -31,11 +33,8 @@ interface MainActivityModule {
     @ContributesAndroidInjector
     fun contributeNextFragment(): NextFragment
 
-    @Binds
-    fun providesDispatcher(store: AppStore): Dispatcher<AppActions>
-
-    @Binds
-    fun providesStateAccessor(store: AppStore): StateAccessor<AppState>
+    @ContributesAndroidInjector
+    fun contributeThridFragment(): ThirdFragment
 
     @Binds
     @IntoMap
@@ -46,6 +45,11 @@ interface MainActivityModule {
     @IntoMap
     @ViewModelKey(NextFragmentViewModel::class)
     fun bindNextFragmentViewModel(nextFragmentViewModel: NextFragmentViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ThirdFragmentViewModel::class)
+    fun bindThirdFragmentViewModel(thirdFragmentViewModel: ThirdFragmentViewModel): ViewModel
 
     @Binds
     fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

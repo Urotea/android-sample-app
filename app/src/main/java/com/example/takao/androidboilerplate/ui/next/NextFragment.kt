@@ -50,4 +50,8 @@ class NextFragment : MainActivityFragmentBase() {
     fun onPingButtonClicked(@Suppress("UNUSED_PARAMETER") view: View) {
         this.actionCreator.pingPong(this.lifecycleScope)
     }
+
+    fun onNextButtonClicked(@Suppress("UNUSED_PARAMETER") view: View) {
+        this.view?.findNavController()?.navigate(NextFragmentDirections.actionNextFragmentToThirdFragment())
+    }
 }

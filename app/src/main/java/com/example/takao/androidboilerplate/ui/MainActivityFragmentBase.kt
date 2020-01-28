@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import dagger.android.support.AndroidSupportInjection
 
 abstract class MainActivityFragmentBase: Fragment() {
@@ -21,5 +22,7 @@ abstract class MainActivityFragmentBase: Fragment() {
         }
     }
 
-    abstract fun onBackPressed()
+    open fun onBackPressed() {
+        this.view?.findNavController()?.popBackStack()
+    }
 }
