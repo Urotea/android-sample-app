@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -61,12 +62,8 @@ class ThirdFragment : MainActivityFragmentBase(), GithubController.CardClickList
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-        this.viewModel.getOwner()
-    }
-
     override fun onClickCard(userName: String) {
+        this.actionCreator.ownerSelected(userName, this.lifecycleScope)
     }
 
 }

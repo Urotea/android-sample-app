@@ -34,6 +34,9 @@ class AppReducerImpl @Inject constructor() : AppReducer {
                 state.copy(mainFragmentState = AppState.MainFragmentState(num = state.mainFragmentState.num))
             }
             is AppActions.LeaveFromNextFragment -> state
+            is AppActions.OwnerDataLoaded -> {
+                state.copy(thirdFragmentState = state.thirdFragmentState.copy(selectedName = action.owner.name))
+            }
         }
     }
 }

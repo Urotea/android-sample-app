@@ -3,13 +3,8 @@ package com.example.takao.androidboilerplate.di.activityModule
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.takao.androidboilerplate.actions.AppActions
 import com.example.takao.androidboilerplate.di.ViewModelFactory
 import com.example.takao.androidboilerplate.di.ViewModelKey
-import com.example.takao.androidboilerplate.state.AppState
-import com.example.takao.androidboilerplate.store.Dispatcher
-import com.example.takao.androidboilerplate.store.AppStore
-import com.example.takao.androidboilerplate.store.StateAccessor
 import com.example.takao.androidboilerplate.ui.MainActivity
 import com.example.takao.androidboilerplate.ui.main.MainFragment
 import com.example.takao.androidboilerplate.ui.main.MainFragmentViewModel
