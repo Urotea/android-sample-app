@@ -1,5 +1,6 @@
 package com.example.takao.androidboilerplate.state
 
+import com.example.takao.androidboilerplate.dao.entity.GithubOwner
 import com.example.takao.androidboilerplate.entity.PingPong
 
 data class AppState(
@@ -18,6 +19,6 @@ data class AppState(
 
     data class ThirdFragmentState(
         val selectedName: String = "Urotea",
-        val ownerList: List<String> = listOf("Urotea", "googlesamples", "kotlin", "android", "jetbrains")
+        val ownerList: List<GithubOwner> = emptyList()
     )
 }

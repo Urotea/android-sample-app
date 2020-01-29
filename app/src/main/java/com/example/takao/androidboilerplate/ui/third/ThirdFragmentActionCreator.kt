@@ -20,4 +20,16 @@ class ThirdFragmentActionCreator @Inject constructor(
             }
         }
     }
+
+    fun setOwnerList(ownerList: List<String>, scope: LifecycleCoroutineScope) {
+        scope.launch(Dispatchers.IO) {
+            val result = ownerList.mapNotNull { ownerName ->
+                val response = api.getOwner(ownerName)
+                if (response.isSuccessful && response.body() != null) {
+                    response.body()
+                } else null
+            }
+            this@ThirdFragmentActionCreator.dispatcher.dispatch(AppActions.SetOwnerList(result))
+        }
+    }
 }

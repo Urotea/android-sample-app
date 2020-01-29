@@ -26,6 +26,11 @@ import javax.inject.Inject
  */
 class ThirdFragment : MainActivityFragmentBase(), GithubController.CardClickListener {
 
+    companion object {
+        val OWNER_LIST: List<String> = listOf("Urotea", "googlesamples", "kotlin", "android", "jetbrains")
+    }
+
+
     @Inject
     lateinit var factory: ViewModelProvider.Factory
 
@@ -60,6 +65,11 @@ class ThirdFragment : MainActivityFragmentBase(), GithubController.CardClickList
             })
         }
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        this.actionCreator.setOwnerList(OWNER_LIST, this.lifecycleScope)
     }
 
     override fun onClickCard(userName: String) {

@@ -37,6 +37,9 @@ class AppReducerImpl @Inject constructor() : AppReducer {
             is AppActions.OwnerDataLoaded -> {
                 state.copy(thirdFragmentState = state.thirdFragmentState.copy(selectedName = action.owner.name))
             }
+            is AppActions.SetOwnerList -> {
+                state.copy(thirdFragmentState = state.thirdFragmentState.copy(ownerList = action.ownerList))
+            }
         }
     }
 }

@@ -17,8 +17,10 @@ class ThirdFragmentViewModel @Inject constructor(
     private val api: GithubApi // RepositoryPatternにしたい
 ) : ViewModel() {
     val repos: LiveData<PagedList<GithubRepo>> =
-        switchMap(stateAccessor.state) { appState ->
-            val dataSourceFactory = DataSourceFactory(appState.thirdFragmentState.selectedName, api, viewModelScope)
+        switchMap(Transformations.distinctUntilChanged(Transformations.map(stateAccessor.state) {
+            it.thirdFragmentState.selectedName
+        })) { selectedName ->
+            val dataSourceFactory = DataSourceFactory(selectedName, api, viewModelScope)
             val config = PagedList.Config.Builder()
                 .setPageSize(PAGE_SIZE)
                 .setInitialLoadSizeHint(PAGE_SIZE)
@@ -27,17 +29,11 @@ class ThirdFragmentViewModel @Inject constructor(
             LivePagedListBuilder(dataSourceFactory, config).build()
         }
 
-    val owner: LiveData<List<GithubOwner>> = switchMap(stateAccessor.state) { appState ->
-        liveData(viewModelScope.coroutineContext) {
-            val result = appState.thirdFragmentState.ownerList.mapNotNull { ownerName ->
-                val response = api.getOwner(ownerName)
-                if (response.isSuccessful && response.body() != null) {
-                    response.body()
-                } else null
-            }
-            emit(result)
-        }
-    }
+    val owner: LiveData<List<GithubOwner>> =
+        Transformations.distinctUntilChanged(
+            Transformations.map(stateAccessor.state) {
+                it.thirdFragmentState.ownerList
+            })
 
     companion object {
         private const val PAGE_SIZE = 10

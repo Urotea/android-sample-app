@@ -17,4 +17,5 @@ sealed class AppActions {
 
     // ThirdFragment
     data class OwnerDataLoaded(val owner: GithubOwner): AppActions()
+    data class SetOwnerList(val ownerList: List<GithubOwner>): AppActions()
 }
