@@ -2,6 +2,8 @@ package com.example.takao.androidboilerplate.di
 
 import android.app.Application
 import android.content.Context
+import androidx.fragment.app.FragmentFactory
+import androidx.lifecycle.ViewModelProvider
 import com.example.takao.androidboilerplate.actions.AppActions
 import com.example.takao.androidboilerplate.dao.GithubApi
 import com.example.takao.androidboilerplate.dao.NetworkDao
@@ -81,4 +83,6 @@ internal object AppModule {
     @Provides
     @JvmStatic
     fun providesStateAccessor(store: AppStore): StateAccessor<AppState> = store
+
+
 }

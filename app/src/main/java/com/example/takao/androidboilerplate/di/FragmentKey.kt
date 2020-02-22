@@ -12,4 +12,4 @@ import kotlin.reflect.KClass
 )
 @Retention(AnnotationRetention.RUNTIME)
 @MapKey
-annotation class FragmentKey(val clazz : KClass<out Fragment>)
+internal annotation class FragmentKey(val clazz : KClass<out Fragment>)

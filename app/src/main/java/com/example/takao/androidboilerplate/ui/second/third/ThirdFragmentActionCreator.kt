@@ -1,4 +1,4 @@
-package com.example.takao.androidboilerplate.ui.third
+package com.example.takao.androidboilerplate.ui.second.third
 
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.takao.androidboilerplate.actions.AppActions

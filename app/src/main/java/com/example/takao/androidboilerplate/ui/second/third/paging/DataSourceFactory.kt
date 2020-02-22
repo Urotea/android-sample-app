@@ -1,4 +1,4 @@
-package com.example.takao.androidboilerplate.ui.third.paging
+package com.example.takao.androidboilerplate.ui.second.third.paging
 
 import androidx.paging.DataSource
 import com.example.takao.androidboilerplate.dao.GithubApi

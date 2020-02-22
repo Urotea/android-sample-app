@@ -1,4 +1,4 @@
-package com.example.takao.androidboilerplate.ui.third
+package com.example.takao.androidboilerplate.ui.second.third
 
 import androidx.lifecycle.*
 import androidx.lifecycle.Transformations.switchMap
@@ -9,7 +9,7 @@ import com.example.takao.androidboilerplate.dao.entity.GithubOwner
 import com.example.takao.androidboilerplate.dao.entity.GithubRepo
 import com.example.takao.androidboilerplate.state.AppState
 import com.example.takao.androidboilerplate.store.StateAccessor
-import com.example.takao.androidboilerplate.ui.third.paging.DataSourceFactory
+import com.example.takao.androidboilerplate.ui.second.third.paging.DataSourceFactory
 import javax.inject.Inject
 
 class ThirdFragmentViewModel @Inject constructor(

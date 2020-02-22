@@ -1,23 +1,22 @@
-package com.example.takao.androidboilerplate.ui.main
+package com.example.takao.androidboilerplate.ui.main.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.takao.androidboilerplate.databinding.FragmentMainBinding
-import com.example.takao.androidboilerplate.ui.MainActivityFragmentBase
+import com.example.takao.androidboilerplate.ui.FragmentBase
 import javax.inject.Inject
 
 class MainFragment @Inject constructor(
     private val factory: ViewModelProvider.Factory,
     private val actionCreator: MainFragmentActionCreator
 
-) : MainActivityFragmentBase() {
+) : FragmentBase() {
 
     private val viewModel: MainFragmentViewModel by viewModels {
         this.factory
