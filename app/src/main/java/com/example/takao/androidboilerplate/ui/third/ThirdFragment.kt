@@ -2,20 +2,16 @@ package com.example.takao.androidboilerplate.ui.third
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.fragment.app.FragmentFactory
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-
-import com.example.takao.androidboilerplate.R
 import com.example.takao.androidboilerplate.databinding.FragmentThirdBinding
 import com.example.takao.androidboilerplate.ui.MainActivityFragmentBase
 import com.example.takao.androidboilerplate.ui.third.epoxy.GithubController
@@ -24,18 +20,14 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass.
  */
-class ThirdFragment : MainActivityFragmentBase(), GithubController.CardClickListener {
+class ThirdFragment @Inject constructor(
+    private val factory: ViewModelProvider.Factory,
+    private val actionCreator: ThirdFragmentActionCreator
+) : MainActivityFragmentBase(), GithubController.CardClickListener {
 
     companion object {
         val OWNER_LIST: List<String> = listOf("Urotea", "googlesamples", "kotlin", "android", "jetbrains")
     }
-
-
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
-
-    @Inject
-    lateinit var actionCreator: ThirdFragmentActionCreator
 
     private val viewModel: ThirdFragmentViewModel by viewModels {
         this.factory

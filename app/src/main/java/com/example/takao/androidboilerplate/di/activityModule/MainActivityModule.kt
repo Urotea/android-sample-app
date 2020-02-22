@@ -1,11 +1,14 @@
 package com.example.takao.androidboilerplate.di.activityModule
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.takao.androidboilerplate.di.FragmentKey
 import com.example.takao.androidboilerplate.di.ViewModelFactory
 import com.example.takao.androidboilerplate.di.ViewModelKey
 import com.example.takao.androidboilerplate.ui.MainActivity
+import com.example.takao.androidboilerplate.ui.MainFragmentFactory
 import com.example.takao.androidboilerplate.ui.main.MainFragment
 import com.example.takao.androidboilerplate.ui.main.MainFragmentViewModel
 import com.example.takao.androidboilerplate.ui.next.NextFragment
@@ -22,14 +25,20 @@ interface MainActivityModule {
     @Binds
     fun providesAppCompatActivity(mainActivity: MainActivity): AppCompatActivity
 
-    @ContributesAndroidInjector
-    fun contributeMainFragment(): MainFragment
+    @Binds
+    @IntoMap
+    @FragmentKey(MainFragment::class)
+    fun bindMainFragment(fragment: MainFragment): Fragment
 
-    @ContributesAndroidInjector
-    fun contributeNextFragment(): NextFragment
+    @Binds
+    @IntoMap
+    @FragmentKey(NextFragment::class)
+    fun bindNextFragment(fragment: NextFragment): Fragment
 
-    @ContributesAndroidInjector
-    fun contributeThridFragment(): ThirdFragment
+    @Binds
+    @IntoMap
+    @FragmentKey(ThirdFragment::class)
+    fun bindThirdFragment(fragment: ThirdFragment): Fragment
 
     @Binds
     @IntoMap

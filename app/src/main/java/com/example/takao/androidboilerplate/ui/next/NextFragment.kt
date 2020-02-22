@@ -15,13 +15,10 @@ import com.example.takao.androidboilerplate.databinding.FragmentNextBinding
 import com.example.takao.androidboilerplate.ui.MainActivityFragmentBase
 import javax.inject.Inject
 
-class NextFragment : MainActivityFragmentBase() {
-
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
-
-    @Inject
-    lateinit var actionCreator: NextFragmentActionCreator
+class NextFragment @Inject constructor(
+    private val factory: ViewModelProvider.Factory,
+    private val actionCreator: NextFragmentActionCreator
+) : MainActivityFragmentBase() {
 
     private val viewModel: NextFragmentViewModel by viewModels {
         this.factory

@@ -44,19 +44,19 @@ android {
 dependencies {
     def paging_version = '2.1.1'
     def retrofit_version = '2.7.1'
-    def nav_version = '2.2.0'
+    def nav_version = '2.2.1'
     def okhttp_version = '4.3.1'
     def glide_version = '4.10.0'
     def epoxy_version = '3.8.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.activity:activity-ktx:1.1.0'
-    implementation 'androidx.fragment:fragment-ktx:1.2.0'
+    implementation 'androidx.fragment:fragment-ktx:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
 
     // lifecycle
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
