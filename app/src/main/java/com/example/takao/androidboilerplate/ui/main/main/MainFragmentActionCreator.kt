@@ -1,4 +1,4 @@
-package com.example.takao.androidboilerplate.ui.main
+package com.example.takao.androidboilerplate.ui.main.main
 
 import com.example.takao.androidboilerplate.actions.AppActions
 import com.example.takao.androidboilerplate.store.Dispatcher

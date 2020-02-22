@@ -1,4 +1,4 @@
-package com.example.takao.androidboilerplate.ui.main
+package com.example.takao.androidboilerplate.ui.main.main
 
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel

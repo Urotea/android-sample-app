@@ -1,4 +1,4 @@
-package com.example.takao.androidboilerplate.ui.third
+package com.example.takao.androidboilerplate.ui.second.third
 
 
 import android.os.Bundle
@@ -13,17 +13,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.takao.androidboilerplate.databinding.FragmentThirdBinding
-import com.example.takao.androidboilerplate.ui.MainActivityFragmentBase
-import com.example.takao.androidboilerplate.ui.third.epoxy.GithubController
+import com.example.takao.androidboilerplate.ui.FragmentBase
+import com.example.takao.androidboilerplate.ui.second.third.epoxy.GithubController
 import javax.inject.Inject
 
-/**
- * A simple [Fragment] subclass.
- */
 class ThirdFragment @Inject constructor(
     private val factory: ViewModelProvider.Factory,
     private val actionCreator: ThirdFragmentActionCreator
-) : MainActivityFragmentBase(), GithubController.CardClickListener {
+) : FragmentBase(), GithubController.CardClickListener {
 
     companion object {
         val OWNER_LIST: List<String> = listOf("Urotea", "googlesamples", "kotlin", "android", "jetbrains")

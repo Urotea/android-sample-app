@@ -1,24 +1,22 @@
-package com.example.takao.androidboilerplate.ui.next
+package com.example.takao.androidboilerplate.ui.main.next
 
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.takao.androidboilerplate.databinding.FragmentNextBinding
-import com.example.takao.androidboilerplate.ui.MainActivityFragmentBase
+import com.example.takao.androidboilerplate.ui.FragmentBase
 import javax.inject.Inject
 
 class NextFragment @Inject constructor(
     private val factory: ViewModelProvider.Factory,
     private val actionCreator: NextFragmentActionCreator
-) : MainActivityFragmentBase() {
+) : FragmentBase() {
 
     private val viewModel: NextFragmentViewModel by viewModels {
         this.factory
@@ -49,6 +47,6 @@ class NextFragment @Inject constructor(
     }
 
     fun onNextButtonClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-        this.view?.findNavController()?.navigate(NextFragmentDirections.actionNextFragmentToThirdFragment())
+        this.view?.findNavController()?.navigate(NextFragmentDirections.actionNextFragmentToSecondActivity())
     }
 }

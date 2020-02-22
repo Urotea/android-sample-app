@@ -5,9 +5,8 @@ import android.os.Bundle
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import dagger.android.support.AndroidSupportInjection
 
-abstract class MainActivityFragmentBase: Fragment() {
+abstract class FragmentBase: Fragment() {
 
     override fun onAttach(context: Context) {
         // AndroidSupportInjection.inject(this)
@@ -18,11 +17,14 @@ abstract class MainActivityFragmentBase: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         this.activity?.onBackPressedDispatcher?.addCallback(this.viewLifecycleOwner, true) {
-            this@MainActivityFragmentBase.onBackPressed()
+            this@FragmentBase.onBackPressed()
         }
     }
 
     open fun onBackPressed() {
-        this.view?.findNavController()?.popBackStack()
+        val result = this.view?.findNavController()?.popBackStack() ?: return
+        if(!result) {
+            this.requireActivity().finish()
+        }
     }
 }

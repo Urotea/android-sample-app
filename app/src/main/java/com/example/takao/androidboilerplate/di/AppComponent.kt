@@ -1,7 +1,7 @@
 package com.example.takao.androidboilerplate.di
 
 import android.app.Application
-import com.example.takao.androidboilerplate.di.activityModule.MainActivityBuilder
+import com.example.takao.androidboilerplate.di.activitymodule.ActivityBuilder
 import com.example.takao.androidboilerplate.ui.App
 import dagger.BindsInstance
 import dagger.Component
@@ -14,7 +14,7 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         AppModule::class,
-        MainActivityBuilder::class
+        ActivityBuilder::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {

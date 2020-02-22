@@ -1,9 +1,10 @@
-package com.example.takao.androidboilerplate.ui.third.paging
+package com.example.takao.androidboilerplate.ui.second.third.paging
 
 import androidx.paging.PageKeyedDataSource
 import com.example.takao.androidboilerplate.dao.GithubApi
 import com.example.takao.androidboilerplate.dao.entity.GithubRepo
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
@@ -17,7 +18,7 @@ class GithubPagingDataSource(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, GithubRepo>
     ) {
-        this.scope.launch {
+        this.scope.launch(Dispatchers.IO) {
             this@GithubPagingDataSource.callApi(1, params.requestedLoadSize) { next, repos ->
                 callback.onResult(repos, null, next)
             }
@@ -25,7 +26,7 @@ class GithubPagingDataSource(
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, GithubRepo>) {
-        this.scope.launch {
+        this.scope.launch(Dispatchers.IO) {
             this@GithubPagingDataSource.callApi(
                 params.key,
                 params.requestedLoadSize

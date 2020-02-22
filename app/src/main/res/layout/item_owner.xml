@@ -10,7 +10,7 @@
                 type="com.example.takao.androidboilerplate.dao.entity.GithubOwner" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
             android:id="@+id/container_card"
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -42,5 +42,5 @@
                     android:text="@{owner.name}"
                     tools:text="xxxxx" />
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 </layout>

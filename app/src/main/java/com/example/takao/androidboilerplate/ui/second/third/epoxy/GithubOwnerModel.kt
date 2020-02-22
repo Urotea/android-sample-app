@@ -1,4 +1,4 @@
-package com.example.takao.androidboilerplate.ui.third.epoxy
+package com.example.takao.androidboilerplate.ui.second.third.epoxy
 
 import android.view.View
 import com.airbnb.epoxy.EpoxyAttribute
