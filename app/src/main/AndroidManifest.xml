@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.takao.androidboilerplate">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
             android:name="com.example.takao.androidboilerplate.ui.App"
             android:allowBackup="true"

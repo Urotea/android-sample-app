@@ -11,14 +11,20 @@ import javax.inject.Inject
 
 class MainActivity: AppCompatActivity(), HasAndroidInjector {
 
+    @Inject
+    lateinit var injector: DispatchingAndroidInjector<Any>
+
+    @Inject
+    lateinit var fragmentFactory: MainFragmentFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
+
+        supportFragmentManager.fragmentFactory = this.fragmentFactory
         setContentView(R.layout.main_activity)
     }
 
-    @Inject
-    lateinit var injector: DispatchingAndroidInjector<Any>
 
     override fun androidInjector(): AndroidInjector<Any> = this.injector
 }

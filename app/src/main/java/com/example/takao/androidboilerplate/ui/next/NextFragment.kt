@@ -15,13 +15,10 @@ import com.example.takao.androidboilerplate.databinding.FragmentNextBinding
 import com.example.takao.androidboilerplate.ui.MainActivityFragmentBase
 import javax.inject.Inject
 
-class NextFragment : MainActivityFragmentBase() {
-
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
-
-    @Inject
-    lateinit var actionCreator: NextFragmentActionCreator
+class NextFragment @Inject constructor(
+    private val factory: ViewModelProvider.Factory,
+    private val actionCreator: NextFragmentActionCreator
+) : MainActivityFragmentBase() {
 
     private val viewModel: NextFragmentViewModel by viewModels {
         this.factory
@@ -49,5 +46,9 @@ class NextFragment : MainActivityFragmentBase() {
 
     fun onPingButtonClicked(@Suppress("UNUSED_PARAMETER") view: View) {
         this.actionCreator.pingPong(this.lifecycleScope)
+    }
+
+    fun onNextButtonClicked(@Suppress("UNUSED_PARAMETER") view: View) {
+        this.view?.findNavController()?.navigate(NextFragmentDirections.actionNextFragmentToThirdFragment())
     }
 }

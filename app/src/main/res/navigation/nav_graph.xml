@@ -8,5 +8,13 @@
         <action android:id="@+id/action_mainFragment_to_nextFragment" app:destination="@id/nextFragment"/>
     </fragment>
     <fragment android:id="@+id/nextFragment" android:name="com.example.takao.androidboilerplate.ui.next.NextFragment"
-              android:label="fragment_next" tools:layout="@layout/fragment_next"/>
+              android:label="fragment_next" tools:layout="@layout/fragment_next">
+        <action
+                android:id="@+id/action_nextFragment_to_thirdFragment"
+                app:destination="@id/thirdFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/thirdFragment"
+            android:name="com.example.takao.androidboilerplate.ui.third.ThirdFragment"
+            android:label="ThirdFragment" />
 </navigation>

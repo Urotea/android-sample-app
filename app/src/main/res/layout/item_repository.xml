@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="repo"
+                type="com.example.takao.androidboilerplate.dao.entity.GithubRepo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#C7ABAB">
+
+        <TextView
+                android:id="@+id/text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{repo.repoName}"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/image_star"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="RepoName" />
+
+        <TextView
+                android:id="@+id/text_url"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{repo.url}"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toStartOf="@+id/text_star"
+                app:layout_constraintStart_toStartOf="@+id/text_name"
+                app:layout_constraintTop_toBottomOf="@+id/text_name"
+                tools:text="https://....." />
+
+        <ImageView
+                android:id="@+id/image_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/star"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/text_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{repo.star}"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/image_star"
+                app:layout_constraintStart_toStartOf="@+id/image_star"
+                app:layout_constraintTop_toBottomOf="@+id/image_star"
+                tools:text="234" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

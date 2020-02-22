@@ -13,13 +13,11 @@ import com.example.takao.androidboilerplate.databinding.FragmentMainBinding
 import com.example.takao.androidboilerplate.ui.MainActivityFragmentBase
 import javax.inject.Inject
 
-class MainFragment : MainActivityFragmentBase() {
+class MainFragment @Inject constructor(
+    private val factory: ViewModelProvider.Factory,
+    private val actionCreator: MainFragmentActionCreator
 
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
-
-    @Inject
-    lateinit var actionCreator: MainFragmentActionCreator
+) : MainActivityFragmentBase() {
 
     private val viewModel: MainFragmentViewModel by viewModels {
         this.factory
