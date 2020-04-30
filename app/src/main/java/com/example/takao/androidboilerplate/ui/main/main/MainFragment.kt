@@ -10,12 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.takao.androidboilerplate.databinding.FragmentMainBinding
 import com.example.takao.androidboilerplate.ui.FragmentBase
+import timber.log.Timber
 import javax.inject.Inject
 
 class MainFragment @Inject constructor(
-    private val factory: ViewModelProvider.Factory,
-    private val actionCreator: MainFragmentActionCreator
-
+    private val factory: ViewModelProvider.Factory
 ) : FragmentBase() {
 
     private val viewModel: MainFragmentViewModel by viewModels {
@@ -26,21 +25,10 @@ class MainFragment @Inject constructor(
         super.onCreate(savedInstanceState)
     }
 
-    override fun onBackPressed() {
-        this.activity?.finish()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        this.viewModel.shouldGoToNext.observe(this.viewLifecycleOwner, Observer {
-            if(it) {
-                this.actionCreator.leavePage()
-                this.view?.findNavController()?.navigate(MainFragmentDirections.actionMainFragmentToNextFragment())
-            }
-        })
 
         // Inflate the layout for this fragment
         return FragmentMainBinding.inflate(inflater).apply {
@@ -50,10 +38,11 @@ class MainFragment @Inject constructor(
         }.root
     }
 
-    fun nextButtonClicked(@Suppress("UNUSED_PARAMETER") view: View) =
-        this.actionCreator.goNextPage()
+    fun nextButtonClicked(@Suppress("UNUSED_PARAMETER") view: View) {
+        Timber.d("next button clicked")
+    }
 
     fun incrementButtonClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-        this.actionCreator.countUp()
+        Timber.d("increment button clicked")
     }
 }

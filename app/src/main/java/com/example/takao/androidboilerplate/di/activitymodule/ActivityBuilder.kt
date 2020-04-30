@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.takao.androidboilerplate.di.CustomFragmentFactory
 import com.example.takao.androidboilerplate.di.ViewModelFactory
 import com.example.takao.androidboilerplate.ui.main.MainActivity
-import com.example.takao.androidboilerplate.ui.second.SecondActivity
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -18,13 +17,6 @@ interface ActivityBuilder {
         ]
     )
     fun contributeMainActivity(): MainActivity
-
-    @ContributesAndroidInjector(
-        modules = [
-            SecondActivityModule::class
-        ]
-    )
-    fun contributeSecondActivity(): SecondActivity
 
     @Binds
     fun bindsFragmentFactory(factory: CustomFragmentFactory): FragmentFactory

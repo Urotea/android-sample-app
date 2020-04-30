@@ -15,7 +15,6 @@ abstract class FragmentBase: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         this.activity?.onBackPressedDispatcher?.addCallback(this.viewLifecycleOwner, true) {
             this@FragmentBase.onBackPressed()
         }

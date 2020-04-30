@@ -4,18 +4,5 @@
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
             app:startDestination="@id/mainFragment">
     <fragment android:id="@+id/mainFragment" android:name="com.example.takao.androidboilerplate.ui.main.main.MainFragment"
-              android:label="fragment_main" tools:layout="@layout/fragment_main">
-        <action android:id="@+id/action_mainFragment_to_nextFragment" app:destination="@id/nextFragment"/>
-    </fragment>
-    <fragment android:id="@+id/nextFragment" android:name="com.example.takao.androidboilerplate.ui.main.next.NextFragment"
-              android:label="fragment_next" tools:layout="@layout/fragment_next">
-        <action
-                android:id="@+id/action_nextFragment_to_secondActivity"
-                app:destination="@id/secondActivity" />
-    </fragment>
-    <activity
-            android:id="@+id/secondActivity"
-            android:name="com.example.takao.androidboilerplate.ui.second.SecondActivity"
-            android:label="activity_second"
-            tools:layout="@layout/activity_second" />
+              android:label="fragment_main" tools:layout="@layout/fragment_main"/>
 </navigation>
