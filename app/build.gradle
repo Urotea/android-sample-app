@@ -36,12 +36,7 @@ android {
 }
 
 dependencies {
-    def paging_version = '2.1.2'
-    def retrofit_version = '2.7.1'
     def nav_version = '2.2.2'
-    def okhttp_version = '4.3.1'
-    def glide_version = '4.10.0'
-    def epoxy_version = '3.8.0'
     def dagger_version = '2.27'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])

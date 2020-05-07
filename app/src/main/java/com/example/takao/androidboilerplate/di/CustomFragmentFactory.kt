@@ -13,5 +13,4 @@ class CustomFragmentFactory @Inject constructor(
         val fragmentClass = loadFragmentClass(classLoader,className)
         return creator[fragmentClass]?.get() ?: super.instantiate(classLoader, className)
     }
-
 }
